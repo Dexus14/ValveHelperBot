@@ -1,0 +1,25 @@
+{
+  "name": "valvebot",
+  "version": "1.0.0",
+  "description": "A discord bot that integrates with Valve Web API.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc && node ./dist/index.js",
+    "dev": "tsc -watch && nodemon ./dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^11.0.0",
+    "mongoose": "^6.1.8",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^17.0.8",
+    "node-ts": "^5.1.2",
+    "typescript": "^4.5.4"
+  }
+}
