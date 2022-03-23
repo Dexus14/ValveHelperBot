@@ -4,8 +4,12 @@
   "description": "A discord bot that integrates with Valve Web API.",
   "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node ./dist/index.js",
+    "start": "node ./dist/index.js",
+    "postinstall": "tsc",
     "dev": "tsc -watch && nodemon ./dist/index.js"
+  },
+  "engines": {
+    "node": "17.3.0" 
   },
   "author": "",
   "license": "ISC",
