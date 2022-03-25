@@ -1,0 +1,22 @@
+{
+  "name": "status-bot-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredziak55/status-bot-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fredziak55/status-bot-website/issues"
+  },
+  "homepage": "https://github.com/fredziak55/status-bot-website#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  },
+  "description": ""
+}
