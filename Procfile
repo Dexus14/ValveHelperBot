@@ -1,1 +1,1 @@
-web: node ./bot/dist/index.js
+web: node ./dist/index.js
