@@ -3,15 +3,6 @@ import { Intents, Client } from 'discord.js'
 import { handleCommand, registerCommands } from './services/command.service'
 import mongoose from 'mongoose'
 import { registerIntervalFunctions } from './services/interval.service'
-import { createServer } from 'http'
-
-// Simple GET request for Heroku
-const app = createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' })
-    res.end('I\'m alive!')
-})
-
-app.listen(process.env.PORT ?? 3001)
 
 /** MONGODB */
 
