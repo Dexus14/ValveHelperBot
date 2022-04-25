@@ -1,6 +1,18 @@
 import axios from 'axios';
 import { Method } from 'axios'
 
+export interface csgoStatuses {
+    app: {
+        version: number,
+        timestamp: number,
+        time: string
+    }
+    services: object
+    datacenters: object
+    matchmaking: object
+    perfectworld: object
+}
+
 export const STEAM_USER_ID_REGEX = /^[0-9]{17}$/g
 export const STEAM_APP_ID_REGEX = /^[0-9]{0,30}$/g
 enum VaintyUrlTypes { INDIVIDUAL_PROFILE = 1, GROUP = 2, OFFICIAL_GAME_GROUP = 3 }
@@ -18,6 +30,11 @@ export async function getPlayerBans(steamids: string) {
     })
 
     return response.data.players[0]
+}
+
+export async function getCsgoStatus(): Promise<csgoStatuses> {
+    const response = await makeApiRequest('/ICSGOServers_730/GetGameServersStatus/v1/', 'GET')
+    return response.data.result
 }
 
 export async function resolveVanityUrl(vanityurl: string, url_type: VaintyUrlTypes = 1) { // FIXME: Remove async??

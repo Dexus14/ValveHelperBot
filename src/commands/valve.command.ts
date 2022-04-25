@@ -3,6 +3,7 @@ import Command from "../interfaces/command.interface";
 import { handleError } from "../services/error.service";
 import news from '../services/subcommands/valve/news.subcommand'
 import profile from '../services/subcommands/valve/profile.subcommand'
+import csgoStatus from '../services/subcommands/valve/csgoStatus.subcommand'
 
 const COMMAND_NAME = 'valve'
 const COMMAND_DESCRIPTION = 'A command that displays valve stuff.'
@@ -32,6 +33,12 @@ const COMMAND_OPTIONS: ApplicationCommandOptionData[] = [
                 required: true
             }
         ]
+    },
+    {
+        type: 'SUB_COMMAND',
+        name: 'status',
+        description: 'Displays steam server status.',
+        options: []
     }
 ]
 
@@ -45,6 +52,9 @@ async function run(interaction: CommandInteraction) {
             break
         case 'profile':
             profile(interaction)
+            break
+        case 'status':
+            csgoStatus(interaction)
             break
         default:
             handleError('Invalid subcommand.', interaction)
