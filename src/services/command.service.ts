@@ -36,8 +36,8 @@ export async function handleCommand(interaction: CommandInteraction) {
         .then(() => command.run(interaction))
 }
 
-export function subscriberExists(channelId: string, info: string) {
-    return IntervalNotificationSubscriber.exists({ type: 'news', channelId, info })
+export async function subscriberExists(type: string, channelId: string, info: string) {
+    return await IntervalNotificationSubscriber.exists({ type, channelId, info })
 }
 
 export async function addNotificationSubscriber(interaction: CommandInteraction, info: any, type: string) {
@@ -47,8 +47,12 @@ export async function addNotificationSubscriber(interaction: CommandInteraction,
     const userId = interaction.user.id
     if(!userId) return handleError('Unknown error.', interaction)
     
-    if(await subscriberExists(channelId, info)) 
-        return handleError('Already subscribed.', interaction)
+    const test = await subscriberExists(type, channelId, info)
+
+    if(test) {
+        handleError('Already subscribed.', interaction)
+        throw new Error('Error: subscriber exists!')
+    }
 
     return new IntervalNotificationSubscriber({
         type,

@@ -13,7 +13,7 @@ export function generateAndSendCsgoStatusEmbed(interaction: CommandInteraction, 
 export function generateCsgoStatusEmbed(statuses: any) {
     const firstPage = prepareFirstPage(statuses)
     const secondPage = prepareSecondPage(statuses)
-    const thirdPage = prepareSecondPage(statuses)
+    const thirdPage = prepareThirdPage(statuses)
 
     const pages = [
         firstPage,
@@ -62,4 +62,3 @@ function prepareThirdPage(statuses: csgoStatuses) { //FIXME: FIx types in prepar
         .setDescription(result)
         .setTimestamp()
 }
-
