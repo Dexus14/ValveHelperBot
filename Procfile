@@ -1,1 +1,1 @@
-bot: node ./dist/index.js
+bot: npm run start
