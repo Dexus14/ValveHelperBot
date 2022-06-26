@@ -48,9 +48,14 @@ function addPageButtonCollector(message: Message, authorId: string) {
 }
 
 function sendInitialMessage(interaction: CommandInteraction, embeds: MessageEmbed[]) {
+    let components: MessageButton[] = []
+    if(embeds.length > 1) {
+        components = [forwardButton]
+    } 
+
     return interaction.editReply({ 
         embeds: [embeds[0]],
-        components: [new MessageActionRow({ components: [backButton, forwardButton] })],
+        components: [new MessageActionRow({ components })],
     })
 }
 
