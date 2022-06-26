@@ -12,7 +12,7 @@ export default async function (interaction: CommandInteraction) {
     const news = await getNewsForApp(appid, 5)
         .catch(err => handleError(err, interaction))
  
-    if(!news.count) return handleError('Error while getting news. Make sure appid is correct.', interaction)
+    if(!news?.count) return handleError('Error while getting news. Make sure appid is correct.', interaction)
 
     generateAndSendNewsEmbed(interaction, news.newsitems)
 }
