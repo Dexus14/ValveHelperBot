@@ -7,7 +7,8 @@ export default async function (interaction: CommandInteraction) {
     const statuses = await getCsgoStatus()
         .catch(err => handleError(err, interaction))
  
-    if(!statuses) return handleError('Error while getting statuses.', interaction)
+    if(!statuses)
+        return handleError('Error while getting statuses.', interaction)
 
     generateAndSendCsgoStatusEmbed(interaction, statuses)
 }

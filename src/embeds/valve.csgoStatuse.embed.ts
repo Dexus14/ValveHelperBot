@@ -1,6 +1,6 @@
-import { CommandInteraction, MessageEmbed } from "discord.js";
-import { csgoStatuses } from "../services/valve.service";
-import { handleCommandPagedEmbed } from "./templates/page.embed";
+import {CommandInteraction, MessageEmbed} from "discord.js";
+import {csgoStatuses} from "../services/valve.service";
+import {handleCommandPagedEmbed} from "./templates/page.embed";
 
 // TODO: Make this embed pretty.
 
@@ -15,13 +15,11 @@ export function generateCsgoStatusEmbed(statuses: any) {
     const secondPage = prepareSecondPage(statuses)
     const thirdPage = prepareThirdPage(statuses)
 
-    const pages = [
+    return [
         firstPage,
         secondPage,
         thirdPage
     ]
-            
-    return pages
 }
 
 function prepareFirstPage(statuses: csgoStatuses) {

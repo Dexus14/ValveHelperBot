@@ -2,13 +2,16 @@ import { CommandInteraction } from "discord.js"
 import IntervalNotificationSubscriber from "../models/IntervalNotificationSubscriber"
 import { handleError } from "./error.service"
 
+const MAX_WATCHES = parseInt(process.env.MAX_WATCHES ?? '0')
 
 export async function addNotificationSubscriber(interaction: CommandInteraction, info: any, type: string) {
     const channelId = interaction.channel?.id
-    if(!channelId) return handleError('Unknown error.', interaction)
+    if(!channelId)
+        return handleError('Unknown error.', interaction)
 
     const userId = interaction.user.id
-    if(!userId) return handleError('Unknown error.', interaction)
+    if(!userId)
+        return handleError('Unknown error.', interaction)
     
     const subscriberExistence = await subscriberExists(type, channelId, info)
 
@@ -25,10 +28,9 @@ export async function addNotificationSubscriber(interaction: CommandInteraction,
     }).save()
 }
 export async function userCanWatch(userId: string) {
-    const userWatches = await countUserWatches(userId)    
-    const maxWatches = parseInt(process.env.MAX_WATCHES ?? '0') // TODO: Make this into const on top of file
+    const userWatches = await countUserWatches(userId)
 
-    return userWatches < maxWatches;
+    return userWatches < MAX_WATCHES;
 }
 
 async function subscriberExists(type: string, channelId: string, info: string) {

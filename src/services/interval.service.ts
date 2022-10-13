@@ -37,7 +37,7 @@ async function sendNewsNotifications(appIds: string[], subscribers: IIntervalNot
         sendNotifications(appSubscribers, client, embed[0])
         
         if(!lastNotification) 
-            addLastNotification(appId, latestNewsId, 'news')// TODO: fix this
+            addLastNotification(appId, latestNewsId, 'news')// TODO: fix this - Dear past myself, what does that mean?
         else {
             lastNotification.lastData = latestNewsId
             lastNotification.save()

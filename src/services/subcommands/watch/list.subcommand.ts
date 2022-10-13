@@ -13,5 +13,5 @@ export default async function list(interaction: CommandInteraction) {
     if(channelId) 
         channelEntries = await getChannelNotificationEntries(channelId)
 
-    generateAndSendWatchListEmbed(userEntries, channelEntries, interaction)
+    await generateAndSendWatchListEmbed(userEntries, channelEntries, interaction)
 }
