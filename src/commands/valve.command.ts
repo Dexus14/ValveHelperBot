@@ -46,18 +46,25 @@ async function run(interaction: CommandInteraction) {
     const { options } = interaction
     const subcommand = options.getSubcommand(true)    
 
-    switch(subcommand) {
-        case 'news':
-            news(interaction)
-            break
-        case 'profile':
-            profile(interaction)
-            break
-        case 'status':
-            csgoStatus(interaction)
-            break
-        default:
-            handleError('Invalid subcommand.', interaction)
+    try {
+        switch(subcommand) {
+            case 'news':
+                await news(interaction)
+                break
+            case 'profile':
+                await profile(interaction)
+                break
+            case 'status':
+                await csgoStatus(interaction)
+                break
+            default:
+                handleError('Invalid subcommand.', interaction)
+        }
+    } catch(e: any) {
+        if(e && e?.message)
+            console.error(e.message)
+
+        handleError('Unknown error has happend.', interaction)
     }
 }
 

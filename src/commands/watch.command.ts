@@ -60,22 +60,30 @@ async function run(interaction: CommandInteraction) {
     const { options } = interaction
     const subcommand = options.getSubcommand(true)    
 
-    switch(subcommand) {
-        case 'news':
-            news(interaction)
-            break
-        case 'list':
-            list(interaction)
-            break
-        case 'stop':
-            stopWatch(interaction)
-            break
-        case 'bans':
-            bans(interaction)
-            break
-        default:
-            handleError('Invalid subcommand.', interaction)
+    try {
+        switch(subcommand) {
+            case 'news':
+                await news(interaction)
+                break
+            case 'list':
+                await list(interaction)
+                break
+            case 'stop':
+                await stopWatch(interaction)
+                break
+            case 'bans':
+                await bans(interaction)
+                break
+            default:
+                handleError('Invalid subcommand.', interaction)
+        }
+    } catch(e: any) {
+        if(e && e?.message)
+            console.error(e.message)
+
+        handleError('Unknown error has happend.', interaction)
     }
+
 }
 
 const command: Command = {

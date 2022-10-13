@@ -11,8 +11,9 @@ const COMMAND_OPTIONS: ApplicationCommandOptionData[] = []
 
 async function run(interaction: CommandInteraction) {
     try {
-        const id = await resolveVanityUrl('dexu12e@$%@#%4sss/dsddfs')
-        console.log(id)        
+        // const id = await test()
+        // const id = await resolveVanityUrl('dexu12e@$%@#%4sss/dsddfs')
+        // console.log(id.length)        
     } catch(err) {
         handleError('Couldnt resolve vanity url.', interaction)
     }

@@ -40,6 +40,7 @@ function addPageButtonCollector(message: Message, authorId: string) {
 
     collector.on('collect', interaction => {
         handleCollectedArrow(interaction)
+        collector.resetTimer()
     })
 
     collector.on('end', () => {

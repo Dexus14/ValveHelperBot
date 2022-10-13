@@ -6,7 +6,7 @@ import { resolveVanityUrl } from "../../valve.service";
 export default async function(interaction: CommandInteraction) {
     const userid = interaction.options.getString('userid')    
 
-    if(!userid) return console.error('No user ID!', interaction)    
+    if(!userid) return console.error('No user ID!', interaction) // FIXME: Is it correct way to handle error?
 
     const resolvedId = await resolveVanityUrl(userid)    
 

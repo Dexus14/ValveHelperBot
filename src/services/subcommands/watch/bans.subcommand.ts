@@ -1,9 +1,12 @@
 import { CommandInteraction } from "discord.js"
-import { addNotificationSubscriber } from "../../command.service"
+import { addNotificationSubscriber, userCanWatch } from "../../watch.service"
 import { handleError } from "../../error.service"
-import { getPlayerBans, resolveVanityUrl } from "../../valve.service"
+import { resolveVanityUrl } from "../../valve.service"
 
 export default async function bans(interaction: CommandInteraction) {
+    const canWatch = await userCanWatch(interaction.user.id)
+    if(!canWatch) return handleError('You cannot watch.', interaction) // TODO: Make better error msg
+    
     const userId = interaction.options.getString('userid')
     if(!userId) return handleError('Invalid parameter.', interaction)
      
@@ -11,8 +14,5 @@ export default async function bans(interaction: CommandInteraction) {
 
     addNotificationSubscriber(interaction, info, 'bans')
         .then(() => interaction.editReply('SUCCESS'))
-        .catch(err => {
-            handleError('Database error.', interaction)          
-            console.error(err)
-        })
+        .catch(err => handleError(err, interaction))
 }

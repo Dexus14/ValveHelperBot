@@ -3,7 +3,7 @@ import { generateNewsEmbed } from "../embeds/valve.news.embed";
 import { handleStaticEmbed } from "../embeds/templates/static.embed";
 import IntervalLastNotification from "../models/IntervalLastNotification";
 import IntervalNotificationSubscriber, { IIntervalNotificationSubscriber } from "../models/IntervalNotificationSubscriber";
-import { getNewsForApp, getPlayerBans, getServerStatuses } from "./valve.service";
+import { getNewsForApp, getPlayerBans } from "./valve.service";
 import { generateBansEmbed } from "../embeds/valve.bans.embed";
 import { handleError } from "./error.service";
 
@@ -20,7 +20,7 @@ async function handleNewsInterval(client: Client) {
     const appIds = subscribers.map(subscriber => subscriber.info)
         .filter((x, i, a) => a.indexOf(x) == i) // Leave only unique entries
         
-    sendNewsNotifications(appIds, subscribers, client)
+    await sendNewsNotifications(appIds, subscribers, client)
 }
 
 async function sendNewsNotifications(appIds: string[], subscribers: IIntervalNotificationSubscriber[], client: Client) {

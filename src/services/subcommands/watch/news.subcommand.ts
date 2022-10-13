@@ -1,9 +1,12 @@
 import { CommandInteraction } from "discord.js";
-import { addNotificationSubscriber } from "../../command.service";
+import { addNotificationSubscriber, userCanWatch } from "../../watch.service";
 import { handleError } from "../../error.service";
 import { STEAM_APP_ID_REGEX } from "../../valve.service";
 
 export default async function list(interaction: CommandInteraction) {
+    const canWatch = await userCanWatch(interaction.user.id)
+    if(!canWatch) return handleError('You cannot watch.', interaction) // TODO: Make better error msg
+    // TODO: Check if app exists
     const appId = interaction.options.getString('appid')
     if(!appId) return handleError('Invalid parameter.', interaction)
      

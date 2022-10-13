@@ -14,7 +14,7 @@ const intervalNotificationSubscriberSchema = new Schema<IIntervalNotificationSub
         type: 'string',
         required: true,
     },
-    info: { // TODO: Change type to string
+    info: {
         type: 'mixed',
         required: true,
     }
